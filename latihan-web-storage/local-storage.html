@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan Web Storage</title>
+</head>
+
+<body>
+    <h1 style="text-align: center;">Tombol ini sudah ditekan sebanyak <span id="count"></span> kali </h1>
+    <button id="button">Klik Disini</button>
+    <button id="clearbtn">Clear Storage WOE</button>
+    <script>
+        const cacheKey = 'NUMBER'
+        if (typeof (Storage) !== "undefined") {
+            if (localStorage.getItem(cacheKey) === 'undefined') {
+                localStorage.setItem(cacheKey, 0)
+            }
+
+            const btn = document.querySelector('#button')
+            const count = document.querySelector('#count')
+            const clear = document.querySelector('#clearbtn')
+
+            btn.addEventListener('click', (e) => {
+                let number = localStorage.getItem(cacheKey)
+                number++
+                localStorage.setItem(cacheKey, number)
+                count.innerText = localStorage.getItem(cacheKey)
+            })
+
+            clear.addEventListener('click', (e) => {
+                localStorage.removeItem(cacheKey)
+            })
+        } else {
+            alert('Browser tidak mendukung Web Storage')
+        }
+    </script>
+</body>
+
+</html>
